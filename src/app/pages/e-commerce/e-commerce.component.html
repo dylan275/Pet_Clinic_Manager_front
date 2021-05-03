@@ -1,0 +1,29 @@
+<div class="container">
+  <nb-card>
+    <h1>Connexion</h1>
+  </nb-card>
+
+  <nb-card>
+    <form [formGroup]="profileForm">
+
+      <br />
+      <label>
+        Identifiant<br />
+        <input type="text" formControlName="username">
+      </label>
+      <br />
+
+      <br />
+      <label>
+        Mot de passe<br />
+        <input type="password" formControlName="password">
+      </label>
+      <br />
+
+      <br />
+      <button type="submit" (click)="onSubmit()" [disabled]="!profileForm.valid" nbButton shape="round"
+        status="success">Se connecter</button>
+      <br /><br />
+    </form>
+  </nb-card>
+</div>

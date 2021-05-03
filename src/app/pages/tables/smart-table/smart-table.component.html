@@ -1,0 +1,59 @@
+<nb-card>
+    <h1>Visites</h1>
+</nb-card>
+
+<div *ngIf="visitsTable">
+    <nb-card>
+        <div id="add">
+            <button nbButton shape="round" status="success" (click)="addVisit()"> + </button>
+        </div>
+
+        <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onEditConfirm($event)"
+            (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+
+
+        <div id="add">
+            <button nbButton shape="round" status="success" (click)="addVisit()">+ </button>
+        </div>
+    </nb-card>
+</div>
+
+<div *ngIf="addingVisit">
+    <nb-card>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <h2>Ajouter</h2><br />
+
+            <label>Identifiant de l'animal</label><br />
+            <select formControlName="idPetName">
+                <option [value]="idPet" *ngFor="let idPet of idPets">{{idPet}}</option>
+            </select>
+            <br /><br />
+
+            <label>Poids de l'animal</label><br />
+            <input type="number" formControlName="petWeight">
+            <br /><br />
+
+            <label>Identifiant du vétérinaire</label><br />
+            <select formControlName="idVetName">
+                <option [value]="idVet" *ngFor="let idVet of idVets">{{idVet}}</option>
+            </select>
+            <br /><br />
+
+            <label>Description</label><br />
+            <input type="text" formControlName="description">
+            <br /><br />
+
+            <label>Date d'entrée</label><br />
+            <input type="date" formControlName="dateEntry">
+            <br /><br />
+
+            <label>Date de sortie</label><br />
+            <input type="date" formControlName="dateLeaving">
+            <br /><br /><br />
+
+            <button type="submit" nbButton shape="round" status="success">Valider</button>
+            <button (click)="cancel($event)" nbButton shape="round" status="danger">Annuler</button><br /><br />
+        </form>
+    </nb-card>
+</div>

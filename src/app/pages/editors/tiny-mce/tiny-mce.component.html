@@ -1,0 +1,61 @@
+<nb-card>
+    <h1>Animaux</h1>
+</nb-card>
+
+<div *ngIf="petsTable">
+    <nb-card>
+        <div id="add">
+            <button nbButton shape="round" status="success" (click)="addPet()"> + </button>
+        </div>
+
+        <ng2-smart-table [settings]="settings" [source]="source" (editConfirm)="onEditConfirm($event)"
+            (deleteConfirm)="onDeleteConfirm($event)">
+        </ng2-smart-table>
+
+
+        <div id="add">
+            <button nbButton shape="round" status="success" (click)="addPet()">+ </button>
+        </div>
+    </nb-card>
+</div>
+
+<div *ngIf="addingPet">
+    <nb-card>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <h2>Ajouter</h2><br />
+
+            <label>Nom</label><br />
+            <input type="text" formControlName="name">
+            <br /><br />
+
+            <label>Date de naissance</label><br />
+            <input type="date" formControlName="dateBirth">
+            <br /><br />
+
+            <label>Genre</label><br />
+            <select formControlName="genderName">
+                <option [value]="gender" *ngFor="let gender of genders">{{gender}}</option>
+            </select>
+            <br /><br />
+
+            <label>Type</label><br />
+            <select formControlName="typeName">
+                <option [value]="type" *ngFor="let type of types">{{type}}</option>
+            </select>
+            <br /><br />
+
+            <label>Race</label><br />
+            <select formControlName="breedName">
+                <option [value]="breed" *ngFor="let breed of breeds">{{breed}}</option>
+            </select>
+            <br /><br />
+
+            <label>Propriétaire</label><br />
+            <input type="text" formControlName="owner">
+            <br /><br /><br />
+
+            <button type="submit" nbButton shape="round" status="success">Valider</button>
+            <button (click)="cancel($event)" nbButton shape="round" status="danger">Annuler</button><br />
+        </form>
+    </nb-card>
+</div>
